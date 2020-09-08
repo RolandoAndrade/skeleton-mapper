@@ -25,154 +25,158 @@ If the field is inside an object, you can access it by a dot notation.
 Map an object
 
 ```typescript
-        const source = {
-            name: "Team 1",
-            shield: "shield.jpg",
-            university: 5,
-            players: [
-                {
-                    name: "Poe",
-                    surname: "Doe",
-                },
-                {
-                    name: "John",
-                    surname: "Msk",
-                },
-            ],
-        };
+const source = {
+    name: "Team 1",
+    shield: "shield.jpg",
+    university: 5,
+    players: [
+        {
+            name: "Poe",
+            surname: "Doe",
+        },
+        {
+            name: "John",
+            surname: "Msk",
+        },
+    ],
+};
 
-        const skeleton = {
-            teamName: "name",
-            image: "shield",
-            players: "players",
-        };
+const skeleton = {
+    teamName: "name",
+    image: "shield",
+    players: "players",
+};
 
-        const r = skeletonMap(source, skeleton);
+const r = skeletonMap(source, skeleton);
 
-        /*
+/*
+    {
+        teamName: "Team 1",
+        image: "shield.jpg",
+        players: [
             {
-                teamName: "Team 1",
-                image: "shield.jpg",
-                players: [
-                    {
-                        name: "Poe",
-                        surname: "Doe",
-                    },
-                    {
-                        name: "John",
-                        surname: "Msk",
-                    },
-                ],
-            }
-        */
+                name: "Poe",
+                surname: "Doe",
+            },
+            {
+                name: "John",
+                surname: "Msk",
+            },
+        ],
+    }
+*/
 ```
 
 Map keys inside keys using dot notation
 
 ```typescript
-        const source = {
-            name: "Angel",
-            surname: "Main",
-            role: {
-                id: 1,
-                name: "Admin",
-            },
-            team: {
-                id: 1,
-                name: "Team 1",
-                university: {
-                    id: 1,
-                    name: "University 1",
-                },
-            },
-        };
+const source = {
+    name: "Angel",
+    surname: "Main",
+    role: {
+        id: 1,
+        name: "Admin",
+    },
+    team: {
+        id: 1,
+        name: "Team 1",
+        university: {
+            id: 1,
+            name: "University 1",
+        },
+    },
+};
 
-        const skeleton = {
-            name: "name",
-            surname: "surname",
-            roleId: "role.id",
-            universityName: "team.university.name",
-        };
+const skeleton = {
+    name: "name",
+    surname: "surname",
+    roleId: "role.id",
+    universityName: "team.university.name",
+};
 
-        /*
-            {
-                name: "Angel",
-                surname: "Main",
-                roleId: 1,
-                universityName: "University 1",
-            }
-        */
+const r = skeletonMap(source, skeleton);
+
+/*
+    {
+        name: "Angel",
+        surname: "Main",
+        roleId: 1,
+        universityName: "University 1",
+    }
+*/
 ```
 
 Map an array and give a different shape as output
 
 ```typescript
 const source = [
-            {
-                name: "Angel",
-                surname: "Main",
-                team: {
-                    id: 1,
-                    name: "Team 1",
-                    university: {
-                        id: 1,
-                        name: "University 1",
-                    },
-                },
+    {
+        name: "Angel",
+        surname: "Main",
+        team: {
+            id: 1,
+            name: "Team 1",
+            university: {
+                id: 1,
+                name: "University 1",
             },
-            {
-                name: "Lisa",
-                surname: "Maz",
-                team: {
-                    id: 2,
-                    name: "Team 2",
-                    university: {
-                        id: 2,
-                        name: "University 2",
-                    },
-                },
+        },
+    },
+    {
+        name: "Lisa",
+        surname: "Maz",
+        team: {
+            id: 2,
+            name: "Team 2",
+            university: {
+                id: 2,
+                name: "University 2",
             },
-        ];
+        },
+    },
+];
 
-        const skeleton = {
+const skeleton = {
+    athlete: {
+        name: "name",
+    },
+    university: {
+        name: "team.university.name",
+        team: {
+            id: "team.id",
+            name: "team.name"
+        }
+    }
+};
+
+const r = skeletonMap(source, skeleton);
+
+/*
+    [
+        {
             athlete: {
-                name: "name",
+                name: "Angel",
             },
             university: {
-                name: "team.university.name",
+                name: "University 1",
                 team: {
-                    id: "team.id",
-                    name: "team.name"
+                    id: 1,
+                    name: "Team 1"
                 }
             }
-        };
-
-        /*
-            [
-                {
-                    athlete: {
-                        name: "Angel",
-                    },
-                    university: {
-                        name: "University 1",
-                        team: {
-                            id: 1,
-                            name: "Team 1"
-                        }
-                    }
-                },
-                {
-                    athlete: {
-                        name: "Lisa",
-                    },
-                    university: {
-                        name: "University 2",
-                        team: {
-                            id: 2,
-                            name: "Team 2"
-                        }
-                    }
+        },
+        {
+            athlete: {
+                name: "Lisa",
+            },
+            university: {
+                name: "University 2",
+                team: {
+                    id: 2,
+                    name: "Team 2"
                 }
-            ]
-        */
+            }
+        }
+    ]
+*/
 ```
