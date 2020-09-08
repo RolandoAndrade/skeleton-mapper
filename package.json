@@ -1,0 +1,39 @@
+{
+  "name": "skeleton-mapper",
+  "version": "1.0.0",
+  "description": "",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "scripts": {
+    "test": "jest",
+    "format": "prettier --write \"./src/**/*.ts\" \"./test/**/*.ts\""
+  },
+  "keywords": [],
+  "author": "Rolando Andrade",
+  "license": "ISC",
+  "dependencies": {
+    "prettier": "^2.1.1",
+    "typescript": "^4.0.2"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "test",
+    "testRegex": ".spec.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.13",
+    "@types/node": "^14.6.4",
+    "jest": "^26.4.2",
+    "ts-jest": "^26.3.0"
+  }
+}
