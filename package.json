@@ -1,6 +1,6 @@
 {
-  "name": "@rolandoandrade/skeleton-mapper",
-  "version": "1.0.1",
+  "name": "skeleton-mapper",
+  "version": "1.0.2",
   "description": "",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
