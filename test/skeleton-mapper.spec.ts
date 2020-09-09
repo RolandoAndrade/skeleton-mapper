@@ -1,4 +1,4 @@
-import { skeletonMap } from "../src/skeleton-mapper";
+import { skeletonMap } from "../src";
 
 describe("skeleton mapper test", () => {
     it("one level mapping", () => {

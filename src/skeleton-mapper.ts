@@ -1,3 +1,5 @@
+import { ObjectBody, Skeleton } from "./types";
+
 function findValue(keysTree: string[], data: ObjectBody) {
     if (!data) {
         return undefined;
